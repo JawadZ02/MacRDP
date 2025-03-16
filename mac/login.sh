@@ -1,6 +1,11 @@
 #!/bin/bash
-echo ..........................................................
-echo IP:
-curl -s http://localhost:4040/api/tunnels | grep -o '"public_url":"[^"]*' | sed 's/"public_url":"//'
-echo Username: runneradmin
-echo Password: P@ssw0rd!
+
+echo ".........................................................."
+echo "Fetching VNC Server Details..."
+
+# Extract the generated public address from Pinggy
+PINGGY_URL=$(grep -o 'https://[^ ]*' pinggy.txt)
+
+echo "Public VNC Address: $PINGGY_URL"
+echo "Username: runneradmin"
+echo "Password: P@ssw0rd!"
