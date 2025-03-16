@@ -28,7 +28,7 @@ brew install openssh
 
 # Start Pinggy TCP tunnel
 echo "Starting Pinggy tunnel..."
-ssh -p 443 -R0:localhost:5900 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 NR1iM59Qqvp+tcp@free.pinggy.io
+nohup ssh -p 443 -R0:localhost:5900 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 NR1iM59Qqvp+tcp@free.pinggy.io > pinggy.log 2>&1 &
 
 sleep 10  # Increase sleep time to ensure tunnel is established
 
