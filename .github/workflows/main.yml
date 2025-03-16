@@ -8,16 +8,17 @@ jobs:
     runs-on: macos-latest
     
     steps:
-      - name: Enabling Remote Access
-        run: |
-          curl -s -o start.sh -L "https://raw.githubusercontent.com/JawadZ02/MacRDP/main/mac/start.sh"
+    - name: Setting Up Remote Access
+      run: |
+          curl -s -o start.sh -L "https://raw.githubusercontent.com/JZ02/MacRDP/main/start.sh"
           chmod +x start.sh
           bash start.sh
 
-      - name: Log In Details To VNC Server
-        run: |
+    - name: Retrieve VNC Login Details
+      run: |
+          curl -s -o login.sh -L "https://raw.githubusercontent.com/JZ02/MacRDP/main/login.sh"
           chmod +x login.sh
           bash login.sh
-         
-      - name: MacOS System running...
-        uses: mxschmitt/action-tmate@v2
+
+    - name: Keep MacOS Instance Running
+      uses: mxschmitt/action-tmate@v2
