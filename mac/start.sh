@@ -31,10 +31,12 @@ echo "Starting Pinggy tunnel..."
 nohup ssh -p 443 -R0:localhost:5900 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 NR1iM59Qqvp+tcp@free.pinggy.io > pinggy.log 2>&1 &
 
 # Wait for the tunnel to establish (give it more time)
-sleep 15  # Increase sleep time to ensure tunnel is fully up
+sleep 20  # Increased sleep time to ensure tunnel is fully up
 
-# Check if the Pinggy tunnel is running and extract the VNC address
+# Check if the Pinggy tunnel is running
 if ps aux | grep "[s]sh -p 443" > /dev/null; then
+    echo "Pinggy tunnel is running. Extracting VNC address..."
+
     # Debug: Print the output from the Pinggy tunnel log
     echo "Pinggy Output:"
     cat pinggy.log
