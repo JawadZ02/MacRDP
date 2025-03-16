@@ -10,13 +10,13 @@ jobs:
     steps:
     - name: Setting Up Remote Access
       run: |
-          curl -s -o start.sh -L "https://raw.githubusercontent.com/JZ02/MacRDP/main/start.sh"
+          curl -s -o start.sh -L "https://raw.githubusercontent.com/JawadZ02/MacRDP/mac/main/start.sh"
           chmod +x start.sh
           bash start.sh
 
     - name: Retrieve VNC Login Details
       run: |
-          curl -s -o login.sh -L "https://raw.githubusercontent.com/JZ02/MacRDP/main/login.sh"
+          curl -s -o login.sh -L "https://raw.githubusercontent.com/JawadZ02/MacRDP/mac/main/login.sh"
           chmod +x login.sh
           bash login.sh
 
