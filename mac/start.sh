@@ -28,8 +28,9 @@ brew install openssh
 
 # Start Pinggy TCP tunnel
 echo "Starting Pinggy tunnel..."
-ssh -p 443 -R 0:localhost:5900 a.pinggy.io | tee pinggy.log &
-sleep 15  # Increase sleep time to ensure tunnel is established
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 443 -R 0:localhost:5900 a.pinggy.io | tee pinggy.log &
+
+sleep 10  # Increase sleep time to ensure tunnel is established
 
 # Debug: Print the output of the log
 echo "Pinggy Output:"
