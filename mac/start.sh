@@ -26,15 +26,23 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 # Install Pinggy
 brew install openssh
 
-# Start Pinggy TCP tunnel
+# Start Pinggy TCP tunnel in the background and capture the output to extract VNC link
 echo "Starting Pinggy tunnel..."
-nohup ssh -p 443 -R0:localhost:5900 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 NR1iM59Qqvp+tcp@free.pinggy.io > pinggy.log 2>&1 &
+output=$(nohup ssh -p 443 -R0:localhost:5900 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 NR1iM59Qqvp+tcp@free.pinggy.io &)
 
-sleep 10  # Increase sleep time to ensure tunnel is established
+# Wait a few seconds to ensure the tunnel is set up
+sleep 10
 
-# Debug: Print the output of the log
+# Debug: Print the output from the Pinggy tunnel (this is optional)
 echo "Pinggy Output:"
-cat pinggy.log
+echo "$output"
 
-# Extract the forwarded TCP address from the log
-grep -o 'tcp://[^ ]*' pinggy.log > vnc_address.txt
+# Extract the VNC address dynamically from the output (matches the pattern tcp://<host>:<port>)
+vnc_address=$(echo "$output" | grep -o 'tcp://[^ ]*')
+
+# Check if the VNC address was found
+if [ -z "$vnc_address" ]; then
+  echo "Error: VNC address not found."
+else
+  echo "Public VNC Address: $vnc_address"
+fi
