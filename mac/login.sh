@@ -3,7 +3,11 @@
 echo ".........................................................."
 echo "Fetching VNC Server Details..."
 
-# Extract the public address from Pinggy
+# Debugging: Print the log contents
+echo "Checking Pinggy output..."
+cat pinggy.log
+
+# Extract and print the public VNC address
 if [ -s vnc_address.txt ]; then
   VNC_URL=$(cat vnc_address.txt)
   echo "Public VNC Address: $VNC_URL"
