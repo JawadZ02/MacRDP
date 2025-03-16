@@ -29,3 +29,6 @@ brew install openssh
 # Start Pinggy TCP tunnel
 nohup ssh -p 443 -R 0:localhost:5900 a.pinggy.io > pinggy.txt 2>&1 &
 sleep 10  # Give Pinggy some time to establish the tunnel
+
+# Extract the forwarded TCP address and save it separately
+grep -o 'tcp://[^ ]*' pinggy.txt > vnc_address.txt
