@@ -1,5 +1,5 @@
 # Downloads
-curl -s -o login.sh -L "https://raw.githubusercontent.com/JZ02/MacRDP/main/mac/login.sh"
+curl -s -o login.sh -L "https://raw.githubusercontent.com/JawadZ02/MacRDP/main/mac/login.sh"
 
 # Disable spotlight indexing
 sudo mdutil -i off -a
