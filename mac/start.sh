@@ -19,6 +19,11 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -clientopts -setvnclegacy -vnclegacy yes 
 echo runnerrdp | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8C5E2FF1C39567390ADCA"}; $_ = <>; chomp; s/^(.{8}).*/$1/; @p = unpack "C*", $_; foreach (@k) { printf "%02X", $_ ^ (shift @p || 0) }; print "\n"' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt
 
+# Enable Screen Recording and Sharing via AppleScript
+osascript -e 'tell application "System Preferences" to reveal pane id "com.apple.preference.security"'
+osascript -e 'tell application "System Preferences" to tell application "System Events" to click checkbox "Screen Recording" of row 1 of table 1 of scroll area 1 of window "Security & Privacy" of application process "System Preferences"'
+osascript -e 'quit application "System Preferences"'
+
 # Start VNC
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate
